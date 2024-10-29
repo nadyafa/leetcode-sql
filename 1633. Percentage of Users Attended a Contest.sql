@@ -75,10 +75,12 @@
 -- Bob registered in contest 207 and the percentage is ((1/3) * 100) = 33.33%
 
 -- Solution
-select contest_id, round(count(distinct user_id)/(
-    select count(distinct user_id)
-    from Users
-)*100, 2) percentage
+select 
+    contest_id, 
+    round(count(distinct user_id)/(
+        select count(distinct user_id)
+        from Users
+    )*100, 2) percentage
 from Register
 group by contest_id
 order by percentage desc, contest_id;
